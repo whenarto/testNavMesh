@@ -13,8 +13,8 @@ public class EnemySight : MonoBehaviour
 
     protected NavMeshAgent agent;
     //SphereCollider col;
-    protected GameObject player;
-    protected Transform target;
+    [SerializeField] protected GameObject player;
+    [SerializeField] protected Transform target;
 
     // Start is called before the first frame update
     void Start()

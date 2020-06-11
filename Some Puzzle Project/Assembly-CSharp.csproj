@@ -50,6 +50,7 @@
      <Compile Include="Assets\Prefabs\Enemy\EnemySight.cs" />
      <Compile Include="Assets\Prefabs\Player\PlayerMovement.cs" />
      <Compile Include="Assets\Prefabs\Projectiles\Bullet.cs" />
+     <Compile Include="Assets\Utilities Script\Camera.cs" />
      <Compile Include="Assets\Utilities Script\GameManager.cs" />
      <Compile Include="Assets\Utilities Script\Singleton.cs" />
  <Reference Include="Unity.Timeline.Editor">
