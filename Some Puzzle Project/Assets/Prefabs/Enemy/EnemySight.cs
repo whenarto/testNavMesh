@@ -5,16 +5,16 @@ using UnityEngine.AI;
 public class EnemySight : MonoBehaviour
 {
     [Header("Field of View")]
-    public float FOVAngle;
-    public float FOVRadius;
+    [SerializeField] protected float FOVAngle;
+    [SerializeField] protected float FOVRadius;
 
     [Space(10)]
-    public bool playerInSight;
+    protected bool playerInSight;
 
-    NavMeshAgent agent;
+    protected NavMeshAgent agent;
     //SphereCollider col;
-    GameObject player;
-    Transform target;
+    protected GameObject player;
+    protected Transform target;
 
     // Start is called before the first frame update
     void Start()
@@ -25,28 +25,28 @@ public class EnemySight : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    // void Update()
+    // {
         
-        playerInSight = inFOV(transform, target, FOVAngle, FOVRadius); 
-        float distance = Vector3.Distance(target.position, transform.position);
+    //     playerInSight = inFOV(transform, target, FOVAngle, FOVRadius); 
+    //     float distance = Vector3.Distance(target.position, transform.position);
 
-        if ((distance <= FOVRadius) && playerInSight)
-        {
-            agent.SetDestination(target.position);
-            if (distance <= agent.stoppingDistance)
-            {
-                FaceTarget();
-            }
-        }
-    }
+    //     if ((distance <= FOVRadius) && playerInSight)
+    //     {
+    //         agent.SetDestination(target.position);
+    //         if (distance <= agent.stoppingDistance)
+    //         {
+    //             FaceTarget();
+    //         }
+    //     }
+    // }
 
-    void FaceTarget()
-    {
-        Vector3 direction = (target.position-transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
-    }
+    // void FaceTarget()
+    // {
+    //     Vector3 direction = (target.position-transform.position).normalized;
+    //     Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+    //     transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+    // }
 
     void OnDrawGizmos() 
     {
@@ -70,7 +70,7 @@ public class EnemySight : MonoBehaviour
         Gizmos.DrawRay(transform.position, transform.forward*FOVRadius);
     }
 
-    bool inFOV(Transform checkingObject, Transform target, float maxAngle, float maxRadius)
+    protected bool inFOV(Transform checkingObject, Transform target, float maxAngle, float maxRadius)
     {
         Collider[] overlaps = new Collider[10];
         int count = Physics.OverlapSphereNonAlloc(checkingObject.position, FOVRadius, overlaps);
